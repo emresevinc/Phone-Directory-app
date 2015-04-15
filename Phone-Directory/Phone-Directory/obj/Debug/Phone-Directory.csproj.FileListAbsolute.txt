@@ -1,0 +1,7 @@
+c:\users\emre\documents\visual studio 2012\Projects\Phone-Directory\Phone-Directory\bin\Phone-Directory.dll
+c:\users\emre\documents\visual studio 2012\Projects\Phone-Directory\Phone-Directory\bin\Phone-Directory.pdb
+c:\users\emre\documents\visual studio 2012\Projects\Phone-Directory\Phone-Directory\obj\Debug\Phone-Directory.csprojResolveAssemblyReference.cache
+c:\users\emre\documents\visual studio 2012\Projects\Phone-Directory\Phone-Directory\obj\Debug\Phone-Directory.dll
+c:\users\emre\documents\visual studio 2012\Projects\Phone-Directory\Phone-Directory\obj\Debug\Phone-Directory.pdb
+C:\Users\Emre\documents\visual studio 2012\Projects\Phone-Directory\Phone-Directory\bin\EntityFramework.dll
+C:\Users\Emre\documents\visual studio 2012\Projects\Phone-Directory\Phone-Directory\bin\EntityFramework.xml

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Phone_Directory_dbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Phone_Directory_dbEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="Phone_Directory_dbModel.Departments" />
+    <EntitySet Name="Employees" EntityType="Phone_Directory_dbModel.Employees" />
+    <EntitySet Name="sysdiagrams" EntityType="Phone_Directory_dbModel.sysdiagrams" />
+    <AssociationSet Name="FK_Employees_Departments" Association="Phone_Directory_dbModel.FK_Employees_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <EntitySet Name="Admins" EntityType="Phone_Directory_dbModel.Admins" />
+    <AssociationSet Name="FK_Departments_Admins" Association="Phone_Directory_dbModel.FK_Departments_Admins">
+      <End Role="Admins" EntitySet="Admins" />
+      <End Role="Departments" EntitySet="Departments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Dep_Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ManagerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Phone_Directory_dbModel.FK_Employees_Departments" FromRole="Departments" ToRole="Employees" />
+    <NavigationProperty Name="Admins" Relationship="Phone_Directory_dbModel.FK_Departments_Admins" FromRole="Departments" ToRole="Admins" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Departments" Relationship="Phone_Directory_dbModel.FK_Employees_Departments" FromRole="Employees" ToRole="Departments" />
+    <Property Type="Int32" Name="ManagerID" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Employees_Departments">
+    <End Role="Departments" Type="Phone_Directory_dbModel.Departments" Multiplicity="1" />
+    <End Role="Employees" Type="Phone_Directory_dbModel.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Surname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Departments" Relationship="Phone_Directory_dbModel.FK_Departments_Admins" FromRole="Admins" ToRole="Departments" />
+  </EntityType>
+  <Association Name="FK_Departments_Admins">
+    <End Type="Phone_Directory_dbModel.Admins" Role="Admins" Multiplicity="1" />
+    <End Type="Phone_Directory_dbModel.Departments" Role="Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admins">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Departments">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,8 @@
+Proje içinde tanýmlý admin kullanýcý adlarý ve parolalarý:
+
+esevinc    11111
+alex       2222   
+
+
+
+--Emre Sevinç
